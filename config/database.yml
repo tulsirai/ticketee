@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: ticketee
+  pool: 5
+  username: railsrnd
+  password: railsrnd1
+  host: <%=ENV['IP']%>
+  
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: ticketee
+  pool: 5
+  username: railsrnd
+  password: railsrnd1
+  host: <%=ENV['IP']%>
