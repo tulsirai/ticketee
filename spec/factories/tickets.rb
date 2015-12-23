@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :ticket do
-    name "MyString"
-description "MyText"
-project nil
+    name "Make it really shiny!"
+    description "MyText"
+    project nil
   end
 
 end
