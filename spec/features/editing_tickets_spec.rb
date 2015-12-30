@@ -1,8 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Users can edit existing tickets" do
+  let(:author)  {FactoryGirl.create(:user)}
   let(:project) {FactoryGirl.create(:project)}
-  let(:ticket) {FactoryGirl.create(:ticket, project: project)}
+  let(:ticket) do
+    FactoryGirl.create(:ticket, project: project, author: author)
+  end 
   
   before do
     visit project_ticket_path(project, ticket)
@@ -11,13 +14,14 @@ RSpec.feature "Users can edit existing tickets" do
   
   scenario "with valid attributes" do
     fill_in "Name", with: "Make it really shiny!"
+    fill_in "Description", with: "My pages are ugly!"
     click_button "Update Ticket"
     
     expect(page).to have_content "Ticket has been updated."
     
     within("#ticket h2") do
       expect(page).to have_content "Make it really shiny!"
-      expect(page).to have_content ticket.name
+      expect(page).not_to have_content ticket.name
     end
   end
   
